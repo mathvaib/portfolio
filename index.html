@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav M. Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&family=Bricolage+Grotesque&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            background: #000;
+            color: #fff;
+            font-family: 'Nunito Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Time Module */
+        .time, .chat-button {
+            position: fixed;
+            top: 20px;
+            z-index: 9999;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s;
+        }
+        .time {
+            left: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f4b41a;
+        }
+        .chat-button {
+            right: 20px;
+            background-color: #f4b41a;
+            color: #000;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Chat Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #111;
+            padding: 30px;
+            width: 400px;
+            border-radius: 10px;
+            z-index: 9998;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .modal h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #f4b41a;
+        }
+
+        .modal input, .modal textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+
+        .modal button {
+            background-color: #f4b41a;
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        /* Landing Page */
+        .landing-page {
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .about-section h3 {
+            font-size: 1.5rem;
+            color: #f4b41a;
+            margin-bottom: 5px;
+        }
+
+        .about-section p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            max-width: 425px;
+        }
+
+        .skills-container {
+            display: flex;
+            gap: 40px;
+        }
+
+        .skills-section h3 {
+            font-size: 1.5rem;
+            color: #f4b41a;
+            margin-bottom: 5px;
+        }
+
+        .name-text {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 15.8rem;
+            font-weight: 200;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Fade-In Section */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+        }
+
+        /* Sections */
+        .section {
+            padding: 20px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #f4b41a;
+            margin-bottom: 20px;
+        }
+
+        /* Tile Container */
+        .tile-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .tile {
+            height: 450px;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-out;
+        }
+
+        .tile:hover {
+            transform: scale(1.05);
+        }
+
+        .tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+        }
+    </style>
+</head>
+<body>
+    <!-- Time Module -->
+    <div class="time hidden" id="time"></div>
+
+    <!-- Chat Button -->
+    <button class="chat-button hidden" id="chatButton" onclick="openModal()">Let's Chat</button>
+
+    <!-- Landing Page -->
+    <section class="landing-page">
+        <div class="about-section">
+            <h3>About Me</h3>
+            <p>Hi there! I’m a developing designer & photographer from India with a love for all things tech. I’m currently pursuing my bachelors degree in Design with my major being Communication Design.</p>
+        </div>
+        <div class="skills-container">
+            <div class="skills-section">
+                <h3>Design Software</h3>
+                <p>Photoshop</p>
+                <p>AfterEffects</p>
+                <p>Illustrator</p>
+                <p>Figma</p>
+            </div>
+            <div class="skills-section">
+                <h3>Photography Kit</h3>
+                <p>Nikon D3200</p>
+                <p>OnePlus 11R</p>
+                <p>Standard Tripod</p>
+            </div>
+        </div>
+        <p class="name-text">Vaibhav Mathur</p>
+    </section>
+
+    <!-- Designs Section -->
+    <section class="section fade-in-section">
+        <h2>Designs</h2>
+        <div class="tile-container">
+            <div class="tile"><img src="/images/Asset 1.png" alt="Design 1"></div>
+            <div class="tile"><img src="/images/poster mockup.jpg" alt="Design 2"></div>
+            <div class="tile"><img src="/images/travel poster mockup_.jpg" alt="Design 3"></div>
+            <div class="tile"><img src="images/movie poster mockup.jpg" alt="Design 4"></div>
+        </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section class="section fade-in-section">
+        <h2>Photography</h2>
+        <div class="tile-container">
+            <div class="tile"><img src="images/1.jpg" alt="Photo 1"></div>
+            <div class="tile"><img src="images/5.jpg" alt="Photo 2"></div>
+            <div class="tile"><img src="/images/8.jpg" alt="Photo 3"></div>
+            <div class="tile"><img src="images/11.jpg" alt="Photo 4"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Vaibhav Mathur - 2024</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="chatModal" class="modal">
+        <h3>Let's Chat</h3>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="4" placeholder="Topic of Conversation" required></textarea>
+        <button onclick="closeModal()">Submit</button>
+    </div>
+
+    <!-- JS -->
+    <script>
+        function openModal() {
+            document.getElementById('chatModal').style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('chatModal').style.display = 'none';
+        }
+
+        // Time Module Functionality (12-hour format)
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            const timeString = `${hours}:${minutes} ${ampm}`;
+            document.getElementById('time').innerText = timeString;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Scroll Animation
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                entry.target.classList.toggle("is-visible", entry.isIntersecting);
+            });
+        });
+        document.querySelectorAll(".fade-in-section").forEach(section => {
+            observer.observe(section);
+        });
+
+        // Show/Hide Time and Chat Button
+        const timeEl = document.getElementById('time');
+        const chatButtonEl = document.getElementById('chatButton');
+        window.addEventListener('scroll', () => {
+            const shouldHide = window.scrollY > window.innerHeight;
+            timeEl.classList.toggle('hidden', shouldHide);
+            chatButtonEl.classList.toggle('hidden', shouldHide);
+        });
+    </script>
+</body>
+</html>
